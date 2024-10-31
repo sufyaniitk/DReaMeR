@@ -14,6 +14,10 @@ labels = data['targets'] # (2500,)
 #     images = np.array(images).reshape(-1, 32 * 32)
 
 def mahalanobis_distance(x, y):
+    """
+    Frobenius Norm
+    Not changing the name of the function because I don't want to change it in main
+    """
     diff = x - y
     M = np.matmul(diff, diff.T)
     return np.sqrt(np.trace(M))
