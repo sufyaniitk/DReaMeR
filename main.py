@@ -26,7 +26,7 @@ def learn_prototypes(images, labels, num_classes):
      #      for x in range(32):
      #           for y in range(32):
                     
-     prototypes[i] = (idx * prototypes[i] + img) / (idx + 1)
+    prototypes[i] = (idx * prototypes[i] + img) / (idx + 1)
     return prototypes
 
 def compute_inverse_covariance(images):
