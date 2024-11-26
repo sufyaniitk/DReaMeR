@@ -56,8 +56,9 @@ def save_extracted_feature():
 
 def extract_features(images, batch_size=5):
     """
-    It automatically handles whether you are working on MAC or NVIDA GPU
+    It automatically handles whether you are working on MAC or NVIDIA GPU
     Extract Features -> child functions extract_features_mac if mps availaible otherwise calls extract_features_cuda
+    batch_size ( = 5)byDeafult. Batch Size for processing bulk images. 5 works well for 3050 etc.
     """
     if torch.backends.mps.is_available() :
         return get_from_gpu(extract_features_mac(images, batch_size=batch_size))
@@ -163,5 +164,3 @@ def extract_features_mac(images, batch_size=5):
             features_list.append(batch_features.view(batch_features.size(0), -1))
 
     return features_list
-
-

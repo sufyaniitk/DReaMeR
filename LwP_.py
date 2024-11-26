@@ -1,23 +1,22 @@
 import numpy as np
 
 class LwP:
-    """
+    
+
+    def __init__(self, n_prototypes):
+        """
         LwP: A class for prototype-based classification using Mahalanobis and Euclidean distances.
 
-        This model calculates prototypes (means) for each class, computes distances using various metrics,
-        and provides functionality for predictions, cosine similarity, and incremental updates.
+        This model calculates prototypes (means) for each class, computes distances using various metrics.
+        functions implemented -> fit, top_k, update, softmax_matrix, dist_matrix, cosine_sim, cosine_top_k, distance, predict
 
         Attributes:
             n_prototypes (int): Number of unique class labels.
             prototypes (ndarray): Mean vectors for each class.
             inv_cov_matrix (ndarray): Inverse of the covariance matrix.
             ...
-    """
-
-    def __init__(self, n_prototypes):
         """
-        n_prototypes (int): Number of unique class labels.
-        """
+        
         self.n_prototypes = n_prototypes
         self.prototypes = None
         self.labels = None
@@ -100,7 +99,7 @@ class LwP:
 
     def dist_matrix(self, X):
         """
-        Basically it calculate the distance between ith training point and jth prototype
+        Calculates the distance between ith training point and jth prototype
         * dist_mat[i][j] = dist(i-th training point, j-th prototype)
         Parameter : X -> (N,d)
         Return : matrix -> (N, 10) if n(prototypes) = 10
@@ -147,7 +146,7 @@ class LwP:
         X_res, y_res = [], []
         for x in auxiliary:
             if not indices: X_res.append(X[x[1]]) # the i-th 'incoming' sample
-            else: X_res.append(x[1])
+            else: X_res.append(x[1]) # the index instead of the sample
             y_res.append(np.argmax(sfm[x[1]])) # the label of this incoming sample
         
         return np.asanyarray(X_res), np.asanyarray(y_res)
@@ -191,7 +190,7 @@ class LwP:
         X_res, y_res = [], []
         for x in auxiliary:
             if not indices: X_res.append(incoming_X[x[1]]) # the i-th 'incoming' sample
-            else: X_res.append(x[1])
+            else: X_res.append(x[1]) # index of the sample
             y_res.append(np.argmax(cosine_mat[x[1]])) # the label of this incoming sample
         
         return np.asanyarray(X_res), np.asanyarray(y_res)
