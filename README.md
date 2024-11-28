@@ -1,5 +1,6 @@
-# Doctrina Aeterna
+# DReaMeR - Dynamic Readaptation and Memory Retention
 
+### A CS771 Course Project
 
 ## Installation  
 
@@ -14,6 +15,17 @@ pip install -r requirements.txt
 ```
 
 * Ensure datasets are correctly loaded in the required structure before running the notebook.
+* We *strongly recommend* the following directory structure
+  ```
+  - main
+  | -- extracted_feature
+  | -- dataset
+  | -- venv (if using one)
+  | -- LwP[MAIN].ipynb
+  | -- ...
+  ```
+  where `...` of course represents the other `.py` files in this repo. Note the folder name `extracted_feature`
+
 
 #### `LwP[MAIN].ipynb` is our main file. Please go through it, you will understand our code smoothly. Ensure you have `dataset` and `extracted_features` in the same directory as the `.ipynb`.
 
