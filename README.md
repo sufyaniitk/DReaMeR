@@ -27,9 +27,9 @@ pip install -r requirements.txt
   where `...` of course represents the other `.py` files in this repo. Note the folder name `extracted_feature`
 
 
-#### `LwP[MAIN].ipynb` is our main file. Please go through it, you will understand our code smoothly. Ensure you have `dataset` and `extracted_features` in the same directory as the `.ipynb`.
+`LwP[MAIN].ipynb` is our main file. The file is sufficiently self-contained so far as the project is concerned. Ensure you have `dataset` and `extracted_feature` in the same directory as the `.ipynb`.
 
-[Download -> extracted_features](https://drive.google.com/drive/folders/1LvjHfk7grWC4PVFVwhHWYb_oAA0JBMwI?usp=drive_link)
+[Download `extracted_feature`](https://drive.google.com/drive/folders/1LvjHfk7grWC4PVFVwhHWYb_oAA0JBMwI?usp=drive_link)
 
 
 
