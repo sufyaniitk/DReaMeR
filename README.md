@@ -31,7 +31,11 @@ pip install -r requirements.txt
 
 [Download `extracted_feature`](https://drive.google.com/drive/folders/1LvjHfk7grWC4PVFVwhHWYb_oAA0JBMwI?usp=drive_link)
 
+## Overview
 
+The project addresses countering unseen domains in Machine Learning models. Traditional classifiers tend to overfit the data they're ``provided" due to sampling bias. For example, models that fail to identify newer strains of SARS-CoV-2 correctly. Even if the training set is diverse, the same model may fail on data drawn from the same dataset but with a different probability distribution.
+
+This can be mitigated by selectively training the model on confident samples and even duplicating those samples with small random noise to increase the model's confidence in that locale. We attempt to implement this novel idea presented by Liu, et al. (2023) in [*Deja vu: Continual Model Generalization for Unseen Domains*](https://arxiv.org/abs/2301.10418)
 
 Copyright Notice
 © 2024 Adarsh Pal, Mohd Amir, Mohd Sufyan, Nishant Pandey. All Rights Reserved.
