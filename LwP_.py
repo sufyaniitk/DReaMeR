@@ -1,4 +1,5 @@
 import numpy as np
+import torch
 
 class LwP:
     
@@ -31,8 +32,13 @@ class LwP:
             X (ndarray) -> (N, d)
             y (ndarray): Labels -> (N,)
         """
+
+        if y.device != "cpu":
+            y = y.cpu()
+
         unique_labels = np.unique(y)
         self.labels = unique_labels
+
         self.prototypes = np.zeros((self.n_prototypes, X.shape[1]))  # Placeholder for prototypes
         self.class_counts = np.zeros(self.n_prototypes, dtype=int)
 
@@ -75,6 +81,9 @@ class LwP:
             update_inv_cov : Boolean : True(By_default) | False -> if you don't want to change the shape of class but 
             want to change the means we set it to False.
         """
+        if y_new.device != "cpu":
+            y_new = y_new.cpu()
+            
         for label in np.unique(y_new):
             new_samples = X_new[y_new == label]
             n_new = len(new_samples)
