@@ -60,7 +60,7 @@ def extract_features(images, batch_size=5):
     Extract Features -> child functions extract_features_mac if mps availaible otherwise calls extract_features_cuda
     batch_size ( = 5)byDeafult. Batch Size for processing bulk images. 5 works well for 3050 etc.
     """
-    if torch.backends.mps.is_available() :
+    if torch.backends.mps.is_available():
         return get_from_gpu(extract_features_mac(images, batch_size=batch_size))
     return get_from_gpu(extract_features_cuda(images, batch_size=batch_size))
 
@@ -99,7 +99,7 @@ def extract_features_cuda(images, batch_size=5):
     model = torch.nn.Sequential(*(list(model.children())[:-1]))  # Remove the classification layer
     model.eval()  # Set the model to evaluation mode
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu"))
 
     model.to(device)
     transformed_images = transformed_images.to(device)
@@ -152,13 +152,16 @@ def extract_features_mac(images, batch_size=5):
     # Use MPS if available, otherwise fall back to CPU
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     model.to(device)
-    print(device, end=" ")
     transformed_images = transformed_images.to(device)
+
+    torch.mps.empty_cache()
 
     # Step 3: Feature extraction
     features_list = []
     with torch.no_grad():
+        torch.mps.empty_cache()
         for i in range(0, transformed_images.size(0), batch_size):
+            torch.mps.empty_cache()
             batch_images = transformed_images[i : i + batch_size]  # Get batch of images
             batch_features = model(batch_images)  # Extract features
             features_list.append(batch_features.view(batch_features.size(0), -1))
